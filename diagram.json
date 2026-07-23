@@ -1,7 +1,49 @@
 {
   "version": 1,
-  "author": "Uri Shaked",
+  "author": "Joaquim Pimentel Alves",
   "editor": "wokwi",
-  "parts": [ { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 0, "left": 0, "attrs": {} } ],
-  "connections": [ [ "esp:TX", "$serialMonitor:RX", "", [] ], [ "esp:RX", "$serialMonitor:TX", "", [] ] ]
+  "parts": [
+    {
+      "type": "board-esp32-devkit-c-v4",
+      "id": "esp",
+      "top": 0,
+      "left": 0,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-photoresistor-sensor",
+      "id": "ldr1",
+      "top": -20,
+      "left": 250,
+      "attrs": {
+        "lux": "800"
+      }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn1",
+      "top": 180,
+      "left": 270,
+      "attrs": {
+        "color": "red",
+        "label": "Reset do turno",
+        "key": "R",
+        "bounce": "0"
+      }
+    }
+  ],
+  "connections": [
+    ["esp:3V3", "ldr1:VCC", "red", []],
+    ["esp:GND.1", "ldr1:GND", "black", []],
+    ["esp:34", "ldr1:DO", "green", []],
+    ["esp:27", "btn1:1.l", "blue", []],
+    ["esp:GND.1", "btn1:2.l", "black", []],
+    ["esp:TX", "$serialMonitor:RX", "", []],
+    ["esp:RX", "$serialMonitor:TX", "", []]
+  ],
+  "serialMonitor": {
+    "display": "always",
+    "newline": "lf"
+  },
+  "dependencies": {}
 }
