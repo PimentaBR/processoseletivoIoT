@@ -53,9 +53,11 @@ while True:
 
     botao_atual = botao_reset.value()  # Pressionado = 0
 
-    if botao_anterior == 1 and botao_atual == 0:
+    # Executa o reset quando o botão é solto
+    if botao_anterior == 0 and botao_atual == 1:
         sleep_ms(TEMPO_DEBOUNCE_MS)
-        if botao_reset.value() == 0:
+
+        if botao_reset.value() == 1:
             resetar_turno(agora)
 
     botao_anterior = botao_atual
